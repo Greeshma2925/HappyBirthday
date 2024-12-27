@@ -1,14 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Surprise Birthday Wish 🎉</title>
+    <title>🎉 Happy Birthday Surprise! 🎉</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #ffde89, #ff8a8a);
+            background: radial-gradient(circle, #fbc2eb, #a18cd1);
             font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
@@ -22,12 +22,11 @@
             animation: fadeIn 2s ease-in-out;
         }
 
-        #message {
-            font-size: 2.5rem;
+        #title {
+            font-size: 3rem;
             font-weight: bold;
             color: #fff;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-            display: none;
         }
 
         #surprise {
@@ -35,11 +34,41 @@
             color: #fff;
             margin-top: 20px;
             cursor: pointer;
-            background: #ff5a5a;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
             padding: 10px 20px;
             border-radius: 20px;
             border: none;
             box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, background 0.5s;
+        }
+
+            #surprise:hover {
+                transform: scale(1.1);
+                background: linear-gradient(45deg, #fad0c4, #ff9a9e);
+            }
+
+        #message {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            display: none;
+            margin-top: 30px;
+        }
+
+        #sub-message {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            animation: fall 3s linear infinite;
         }
 
         @keyframes fadeIn {
@@ -50,14 +79,6 @@
             to {
                 opacity: 1;
             }
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.7);
-            animation: fall 3s linear infinite;
         }
 
         @keyframes fall {
@@ -75,35 +96,46 @@
 </head>
 <body>
     <div id="container">
-        <h1>🎉 Happy Birthday! 🎂</h1>
-        <button id="surprise">Click Here for a Surprise!</button>
-        <div id="message">🌟 You're Amazing! 🌟<br> Have the best birthday ever!</div>
+        <h1 id="title">🎉 Happy Birthday Maa! 🎂</h1>
+        <button id="surprise">Click for a Magical Surprise!</button>
+        <div id="message">🌟 Have the Most Amazing Day, [Name]! 🌟</div>
+        <div id="sub-message">✨ You’re truly one in a million! ✨</div>
     </div>
 
     <script>
-    const surpriseButton = document.getElementById('surprise');
-    const message = document.getElementById('message');
+        const surpriseButton = document.getElementById('surprise');
+        const message = document.getElementById('message');
+        const subMessage = document.getElementById('sub-message');
 
-    function createConfetti() {
-      for (let i = 0; i < 150; i++) {
-        const confetti = document.createElement('div');
-        confetti.classList.add('confetti');
-        confetti.style.left = Math.random() * 100 + 'vw';
-        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
-        document.body.appendChild(confetti);
-        confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
-      }
-    }
+        function createConfetti() {
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                document.body.appendChild(confetti);
 
-    surpriseButton.addEventListener('click', () => {
-      surpriseButton.style.display = 'none';
-      message.style.display = 'block';
-      createConfetti();
-      setTimeout(() => {
-        alert("🎁 Your birthday is special! Celebrate it to the fullest! 🎁");
-      }, 1000);
-    });
+                // Remove confetti after animation
+                confetti.addEventListener('animationend', () => confetti.remove());
+            }
+        }
+
+        surpriseButton.addEventListener('click', () => {
+            surpriseButton.style.display = 'none';
+            message.style.display = 'block';
+            subMessage.style.display = 'block';
+            createConfetti();
+
+            // Add dynamic text changes
+            setTimeout(() => {
+                message.textContent = "🎁 You're Incredible! 🎁";
+            }, 3000);
+
+            setTimeout(() => {
+                subMessage.textContent = "🎂 Let's Celebrate You! 🎂";
+            }, 5000);
+        });
     </script>
 </body>
 </html>
-
